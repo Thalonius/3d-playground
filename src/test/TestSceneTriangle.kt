@@ -4,6 +4,10 @@ import spr5.scene.Coordinate
 import spr5.scene.SceneTriangle
 import spr5.scene.Rgba
 import kotlin.test.DefaultAsserter
+import kotlin.test.Asserter
+import kotlin.test.Test
+
+
 
 class TestingFixture() {
     private val point1 = Coordinate(50.0f, 50.0f, 50.0f)
@@ -18,6 +22,9 @@ class TestingFixture() {
     public fun TestObjectCreation(){
         defAsserter.assertNotNull("Testing triangle not null", triangle)
     }
+
+
+
     public fun TestTriangleColor(){
         val wrongTestColor = Rgba(1.0f, 0.5f, 0.7f, 1.0f);
         val wrongObjectColor = Rgba(1.0f, 0.5f, 0.7f, 0.5f);
@@ -26,7 +33,7 @@ class TestingFixture() {
         defAsserter.assertEquals("Testing right color", triangleColor, triangle.color)
     }
 
-    public fun TestConstructionPoints(){
+    @Test public fun TestConstructionPoints(){
         val p1 = Coordinate(50.0f, 50.0f, 50.0f)
         val p2 = Coordinate (100.0f, 100.0f, 100.0f)
         val p3 = Coordinate (-50.0f, -50.0f, -50.0f)
@@ -34,7 +41,8 @@ class TestingFixture() {
                 p1, p2, p3)
 
         defAsserter.assertEquals("Testing the construction points with the original points:", vertices, triangle.vertices)
-        defAsserter.assertNotEquals("Testing the construction points with the same points but different object", vert, triangle.vertices)
+        //not
+        defAsserter.assertEquals("Testing the construction points with the same points but different object", vert, triangle.vertices)
     }
 
     public fun TestGetVertices(){
